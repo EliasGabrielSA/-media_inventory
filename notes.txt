@@ -1,0 +1,11 @@
+livros, filmes, series de tv
+relações com essas mídias
+	a)possui uma copia
+	b)ja consumiu
+	c)deseja consumir
+
+Midia (nome, ficha tecnica(a, b ou c), genero, estado) / (registrar preço) 
+(listar midias emprestadas, listagem por autor/diretor/ator, wishlist)
+Usuario
+
+Relação Midia / Usuário
