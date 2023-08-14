@@ -13,7 +13,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            
+        Usuario Elias = new Usuario("Elias Gabriel");
+        Midia PercyJackson = new Livro("PercyJackson", "acao", "livro", 245, "RickRiordan");
+        Elias.addMidia(PercyJackson, "a");
+        
+        Elias.estatisticasGerais();
+        Elias.listarPorDirigente("RickRiordan");
+        
     }
-    
 }
