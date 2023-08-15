@@ -1,3 +1,7 @@
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -21,17 +25,20 @@ public class Emprestimo {
     }
     
     void exibirEmprestimo(int dt_atual) {
-        System.out.println("---------------------------------");
-        System.out.println("Mutuário: " + mutuario);
-        if(dt_devolucao > dt_devolucao) {
+        
+        System.out.println("Mutuario: " + mutuario.getNomeUsuario());
+        if(dt_devolucao > dt_atual) {
             int dias_expirados = dt_atual - dt_emprestimo;
             
             System.out.println("");
-            System.out.println("Data de devolução expirou...");
+            System.out.println("Midia emprestada: " + midia.getNome());
+            System.out.println("Data de devolucao expirou...");
             System.out.println("Dias de atraso: " + dias_expirados);
+        } else {
+            System.out.println("");
+            System.out.println("Data de devolução ainda não expirou...");
+            System.out.println("Dias de atraso: " + 0);
         }
         System.out.println("---------------------------------");
     }
-    
-    
 }

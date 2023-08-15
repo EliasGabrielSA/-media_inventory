@@ -51,4 +51,8 @@ class Midia {
     public String getTipo() {
         return tipo;
     }
+    
+    public int getNmrTemp() {
+        return 0;
+    }
 }

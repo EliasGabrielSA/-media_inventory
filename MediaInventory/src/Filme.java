@@ -33,11 +33,20 @@ class Filme extends Midia{
     
     @Override 
     public String getDirigente(String dirigente) {
-        return getNome();
+        for(int i = 0; i < atrs_principais.size(); i++) {
+            if(atrs_principais.get(i).equals(dirigente)) {
+                return atrs_principais(i);
+            } 
+        }
+        return null;
     }
     
     @Override
     public float getHoras() {
         return duracao / 60;
+    }
+
+    private String atrs_principais(int i) {
+        return atrs_principais.get(i);
     }
 }
