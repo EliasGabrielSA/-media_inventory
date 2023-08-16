@@ -32,7 +32,7 @@ class Livro extends Midia{
     public String getDirigente(String dirigente) {
         for(int i = 0; i < autores.size(); i++) {
             if(autores.get(i).equals(dirigente)) {
-                return autores(i);
+                return autores.get(i);
             }
         }
         return null;
@@ -41,9 +41,5 @@ class Livro extends Midia{
     @Override
     public float getHoras() {
         return nmr_paginas / 60;
-    }
-
-    private String autores(int i) {
-        return autores.get(i);
     }
 }

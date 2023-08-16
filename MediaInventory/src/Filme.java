@@ -19,9 +19,10 @@ class Filme extends Midia{
     private String tipo;
     
     
-    public Filme(String nome, String genero, String tipo, float duracao, String formato) {
+    public Filme(String nome, String tipo, String genero, float duracao, String formato, String atr_principal) {
         super(nome, genero, "filme");
         this.atrs_principais = new ArrayList<>();
+        this.atrs_principais.add(atr_principal);
         this.duracao = duracao;
         this.formato = formato;
     }
@@ -35,7 +36,7 @@ class Filme extends Midia{
     public String getDirigente(String dirigente) {
         for(int i = 0; i < atrs_principais.size(); i++) {
             if(atrs_principais.get(i).equals(dirigente)) {
-                return atrs_principais(i);
+                return atrs_principais.get(i);
             } 
         }
         return null;
@@ -44,9 +45,5 @@ class Filme extends Midia{
     @Override
     public float getHoras() {
         return duracao / 60;
-    }
-
-    private String atrs_principais(int i) {
-        return atrs_principais.get(i);
     }
 }

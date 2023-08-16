@@ -14,14 +14,14 @@ import java.util.ArrayList;
 class Serie extends Midia{
     private ArrayList <String> atrs_principais;
     private float duracao;
-    private int nmr_temporadas;
+    private int nmr_temporada;
     private String formato;
     private String tipo;
 
-    public Serie(String nome, String tipo, String genero, int nmr_temporadas, float duracao, String formato) {
+    public Serie(String nome, String tipo, String genero, int nmr_temporada, float duracao, String formato) {
         super(nome, genero, "serie");
         this.atrs_principais = new ArrayList<>();
-        this.nmr_temporadas = nmr_temporadas;
+        this.nmr_temporada = nmr_temporada;
         this.duracao = duracao;
         this.formato = formato;
     }
@@ -48,7 +48,12 @@ class Serie extends Midia{
 
     @Override
     public int getNmrTemp() {
-        return nmr_temporadas;
+        return nmr_temporada;
+    }
+    
+    @Override
+    public String getFormato() {
+        return formato;
     }
     
     private String atrs_principais(int i) {

@@ -55,4 +55,8 @@ class Midia {
     public int getNmrTemp() {
         return 0;
     }
+    
+    public String getFormato() {
+        return null;
+    }
 }

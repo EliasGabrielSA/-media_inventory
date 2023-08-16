@@ -52,9 +52,9 @@ class Usuario {
             System.out.println("---------------------------------");
         } else {
             System.out.println("Lista das midias emprestadas: ");
-            System.out.println("----------------");
+            System.out.println("---------------------------------");
             for(int i = 0; i < emprestimos.size(); i++) {
-                emprestimos.get(i).exibirEmprestimo(data_atual);
+                emprestimos.get(i).exibirEmprestimo();
             }
         } 
     }
@@ -73,27 +73,35 @@ class Usuario {
         System.out.println("Minha lista de desejos:");
         System.out.println("---------------------------------");
         for(int i = 0; i < wishlist.size(); i ++) {
-            System.out.println(wishlist.get(i).getNome() + ", R$" + wishlist.get(i).getPreco());
+            System.out.println("* " + wishlist.get(i).getNome() + ", R$" + wishlist.get(i).getPreco());
         }
-        System.out.println("---------------------------------");
+        System.out.println("---------------");
     }
     
     public void estatisticasGerais() {
+        System.out.println("Midias consumidas: ");
+        for(int i = 0; i < midias.size(); i++) {
+            if(possui.get(i) == true) {
+                System.out.println("* " + midias.get(i).getNome());
+            }
+        }
+        System.out.println("---------------------------------");
+        
         float horas_gastas = 0;
         for(int i = 0; i < midias.size(); i++){
-            if (relacoes.get(i).equals("b")) {
+            if (possui.get(i) == true) {
                 horas_gastas += midias.get(i).getHoras();
             }
         }
-        System.out.println("Horas totais gastas com midias consumidas : " + horas_gastas);
+        System.out.printf("Horas totais gastas com midias consumidas : %.2f horas\n", horas_gastas);
         
         float horas_gastas_outros = 0;
         for(int i = 0; i < midias.size(); i++){
-            if (relacoes.get(i).equals("a") || relacoes.get(i).equals("a")) {
+            if(possui.get(i) == false) {
                 horas_gastas_outros += midias.get(i).getHoras();
             }
         }
-        System.out.println("Horas necessarias para consumir as demais midias: " + horas_gastas_outros);
+        System.out.printf("Horas necessarias para consumir as demais midias: %.2f horas\n", horas_gastas_outros);
         
   
         System.out.println("---------------------------------");
@@ -132,16 +140,16 @@ class Usuario {
         
         System.out.println("---------------------------------");
         
-        System.out.println("Quantidade de temporadas de cada serie que se possui e que ja se consumiu: ");
-        System.out.println("---------------------------------");
+        System.out.println("Lista de temporadas consumidas : ");
+        System.out.println("");
+        //("a".equals(relacoes.get(i)) && possui.get(i) == true) && (midias.get(i).getTipo().equals("serie")) && (("DVD".equals(midias.get(i).getFormato())) && ("Blu-Ray".equals(midias.get(i).getFormato())))
         for(int i = 0; i < midias.size(); i++) {
-            if("b".equals(relacoes.get(i)) && possui.get(i) == true && midias.get(i).getTipo().equals("serie")) {
-                String nome_serie = midias.get(i).getNome();
+            if(midias.get(i) instanceof Serie && possui.get(i) == true) {
                 int quant_temp = midias.get(i).getNmrTemp();
                 
-                System.out.println("Serie: " + nome_serie + ", quantidade de temporadas: " + quant_temp);
-                System.out.println("---------------------------------");
+                System.out.println("* Serie: " + midias.get(i).getNome() + ", temporada: " + quant_temp);
             }
         }
+        System.out.println("---------------------------------");
     }
 }

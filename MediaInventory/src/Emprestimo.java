@@ -1,6 +1,7 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,31 +15,52 @@ import java.text.SimpleDateFormat;
 public class Emprestimo {
     private Midia midia;
     private Usuario mutuario;
-    private int dt_emprestimo;
-    private int dt_devolucao; 
+    private LocalDate dt_emprestimo;
+    private LocalDate dt_devolucao; 
     
-    Emprestimo(Usuario mutuario, Midia midia, int dt_emprestimo, int dt_devolucao) {
+    Emprestimo(Usuario mutuario, Midia midia, String dt_emprestimo, String dt_devolucao) {
         this.mutuario = mutuario;
         this.midia = midia;
-        this.dt_emprestimo = dt_emprestimo;
-        this.dt_devolucao = dt_devolucao;
+        
+        DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.dt_emprestimo = LocalDate.parse(dt_emprestimo,formatter);
+        this.dt_devolucao = LocalDate.parse(dt_devolucao,formatter);
     }
     
-    void exibirEmprestimo(int dt_atual) {
-        
+    public LocalDate getDtEmprest(){
+        return dt_emprestimo;
+    }
+    public LocalDate getDtDev(){
+        return dt_devolucao;
+    }
+
+    private boolean isAtrasado(){
+        LocalDate atual=LocalDate.now();
+
+        return !atual.isBefore(dt_devolucao);
+    }
+
+    public int calcDevolucao(){
+        int ret;
+        LocalDate atual = LocalDate.now();
+        Period periodo = Period.between(this.dt_devolucao, atual);
+        ret = periodo.getDays()+ periodo.getMonths()*30 + periodo.getYears()*365;
+        return ret;
+    }
+    
+    void exibirEmprestimo() {
         System.out.println("Mutuario: " + mutuario.getNomeUsuario());
-        if(dt_devolucao > dt_atual) {
-            int dias_expirados = dt_atual - dt_emprestimo;
+        System.out.println("Midia emprestada: " + midia.getNome());
+        if(isAtrasado()) {
+            int dias_expirados = calcDevolucao();
             
             System.out.println("");
-            System.out.println("Midia emprestada: " + midia.getNome());
             System.out.println("Data de devolucao expirou...");
             System.out.println("Dias de atraso: " + dias_expirados);
         } else {
             System.out.println("");
-            System.out.println("Data de devolução ainda não expirou...");
-            System.out.println("Dias de atraso: " + 0);
+            System.out.println("Data de devolucao ainda nao expirou...");
         }
-        System.out.println("---------------------------------");
+        System.out.println("----------------");
     }
 }

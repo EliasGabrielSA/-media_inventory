@@ -18,19 +18,30 @@ public class Main {
         
         Midia PercyJackson = new Livro("PercyJackson", "livro", "acao", 245, "RickRiordan");
         Midia MagnusChase = new Livro("MagnusChase", "livro", "suspense", 1000, "RickRiordan");
+        Midia ReasonsWhy = new Serie("13ReasonWhy", "serie", "drama", 2, 892, "DVD");
+        Midia Lost = new Serie("Lost", "serie", "drama", 1, 892, "DVD");
+        Midia Shrek = new Filme("Shrek1", "filme", "fantasia", 243, "DVD", "MikeMiers");
+        Midia Shrek2 = new Filme("Shrek2", "filme", "fantasia", 242, "DVD", "MikeMiers");
+        Shrek2.registrarPreco(45);
         
-        //Midia 13ReasonsWhy = new Serie("13ReasonWhy", "serie", "drama", 2, 892, "DVD");
         Elias.addMidia(PercyJackson, "a", true);
         Elias.addMidia(MagnusChase, "b", true);
-        
+        Elias.addMidia(ReasonsWhy, "b", true);
+        Elias.addMidia(Shrek, "c", true);
+        Elias.addMidia(Lost, "b", true);
+        Elias.addMidia(Shrek2, "c", true);
+
         Elias.estatisticasGerais();
-        Elias.listarPorDirigente("RickRiordan");
+        Elias.listarPorDirigente("MikeMiers");
         
-        Emprestimo emp1 = new Emprestimo(Herick, PercyJackson, 20230810, 20230820);
-        Emprestimo emp2 = new Emprestimo(Herick, MagnusChase, 20230810, 20230920);
+        Emprestimo emp1 = new Emprestimo(Herick, PercyJackson, "2022-08-10", "2023-03-07");
+        Emprestimo emp2 = new Emprestimo(Herick, MagnusChase, "2023-08-10", "2023-09-11");
         Elias.addEmprestimo(emp1);
         Elias.addEmprestimo(emp2);
         
         Elias.listarEmprestimos(20230815);
+        
+        Elias.addDesejo(Shrek2);
+        Elias.mostrarWishList();
     }
 }
